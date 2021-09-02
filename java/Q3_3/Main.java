@@ -1,24 +1,26 @@
 import java.util.*;
 
-public class Q3_3 {
+public class Q3_3_1 {
     public static void main(String[] args)
     {
-        Scanner in = new Scanner(System.in);
+        Scanner in =new Scanner(System.in);
         int n = in.nextInt();
         int k = in.nextInt();
-        int[] data = new int[n+3];
-        for(int i = 1; i<=n; i++)
-            data[i] = in.nextInt();
-
+        int[] arr = new int[n];
         int max = 0;
-        for(int i = 1; i<=n; i++)
+        int sum = 0;
+        for(int i = 0; i < n; i++)
         {
-            int threeDays = 0;
-            for(int j = 0; j<k; j++)
-                threeDays+=data[i+j];
-
-            if(max < threeDays)
-                max = threeDays;
+            arr[i] = in.nextInt();
+            if(i < k)
+                sum += arr[i];
+        }
+        max = sum;
+        for(int i = k; i < n; i++)
+        {
+            sum = sum+arr[i]-arr[i-k];
+            if(max < sum)
+                max = sum;
         }
         System.out.print(max);
     }
